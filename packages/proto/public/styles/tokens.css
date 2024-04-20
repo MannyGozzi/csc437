@@ -10,4 +10,8 @@
   --color-text: #999;
   --color-text-dark: #333;
   --color-text-light: #fff;
+  --padding-sm: 0.5rem;
+  --padding-md: 1rem;
+  --padding-lg: 1.5rem;
+  --border-width: 3px;
 }
