@@ -1,19 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flights</title>
-    <div>
+    <link rel="stylesheet" href="styles/tokens.css" />
+    <link rel="stylesheet" href="styles/app.css" />
+  </head>
+  <body>
+    <section class="center">
+      <div class="container">
+        <h2>Flights</h2>
         <label for="date">Date</label>
-        <input type="date" name="date" id="date"/>
-        <label>Departure</label>
-        <input id="departure" type="text" name="departure" />
-        <label>Destination</label>
-        <input id="destination" type="text" name="destination" />
-    </div>
-</head>
-<body>
-    
-</body>
+        <input type="date" name="date" id="date" />
+        <div class="flex-row">
+          <div class="flex-col">
+            <label>Departure</label>
+            <input
+              id="departure"
+              type="text"
+              name="departure"
+              placeholder="Location"
+            />
+          </div>
+          <div class="flex-col">
+            <label>Destination</label>
+            <input
+              id="destination"
+              type="text"
+              name="destination"
+              placeholder="Location"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>

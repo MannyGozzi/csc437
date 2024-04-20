@@ -1,0 +1,13 @@
+:root {
+  font-family: "Poppins", Helvetica, sans-serif;
+  --color-fg: #fff;
+  --color-primary: #d5ffdf;
+  --color-border: #a4a4a4;
+  --alert: #ff8a82;
+  --rounded: 1rem;
+  --rounded-full: 10rem;
+  --max-width: 700px;
+  --color-text: #999;
+  --color-text-dark: #333;
+  --color-text-light: #fff;
+}

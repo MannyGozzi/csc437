@@ -1,18 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hotel</title>
-</head>
-<body>
-    <div>
-        <label for="startDate">Start Date</label>
-        <input type="startDate" name="Start Date" id="startDate"/>
-        <label for="endDate">End Date</label>
-        <input type="endDate" name="End Date" id="endDate"/>
+    <link rel="stylesheet" href="styles/tokens.css" />
+    <link rel="stylesheet" href="styles/app.css" />
+  </head>
+  <body>
+    <section class="center">
+      <div class="container">
+        <h2>Hotels</h2>
+        <div class="flex-row">
+          <div class="flex-col">
+            <label for="startDate">Start Date</label>
+            <input type="date" name="Start Date" id="startDate" />
+          </div>
+          <div class="flex-col">
+            <label for="endDate">End Date</label>
+            <input type="date" name="End Date" id="endDate" />
+          </div>
+        </div>
         <label>Location</label>
-        <input id="location" type="text" name="location" />
-    </div>
-</body>
+        <input
+          id="location"
+          type="text"
+          name="location"
+          placeholder="Location"
+        />
+      </div>
+    </section>
+  </body>
 </html>

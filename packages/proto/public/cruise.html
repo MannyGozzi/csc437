@@ -1,23 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flights</title>
-    <div>
-        <label for="date">Start</label>
-        <input type="date" name="start" id="start"/>
-        <label>End</label>
-        <input id="end" type="date" name="end" />
+    <link rel="stylesheet" href="styles/tokens.css" />
+    <link rel="stylesheet" href="styles/app.css" />
+  </head>
+  <body>
+    <section class="center">
+      <div class="container">
+        <h2>Cruises</h2>
+        <div class="flex-row">
+          <div class="flex-col">
+            <label for="date">Start</label>
+            <input type="date" name="start" id="start" />
+          </div>
+          <div class="flex-col">
+            <label>End</label>
+            <input id="end" type="date" name="end" />
+          </div>
+        </div>
         <label>Package</label>
         <select name="package">
-            <option value="Drink">Unlimited Drinks</option>
-            <option value="Food">Unlimited Food</option>
-            <option value="Food/Drink">Premium (Food + Drink)</option>
+          <option value="Drink">Unlimited Drinks</option>
+          <option value="Food">Unlimited Food</option>
+          <option value="Food/Drink">Premium (Food + Drink)</option>
         </select>
-    </div>
-</head>
-<body>
-    
-</body>
+      </div>
+    </section>
+  </body>
 </html>

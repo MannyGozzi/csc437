@@ -1,20 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flights</title>
-    <p>All cars must be returned by 24:00</p>
-    <div>
+    <link rel="stylesheet" href="styles/tokens.css" />
+    <link rel="stylesheet" href="styles/app.css" />
+  </head>
+  <body>
+    <section class="center">
+      <div class="container">
+        <p class="alert">All cars must be returned by 24:00</p>
+        <h2>Cars</h2>
         <label>Car</label>
-        <input type="text" name="Car" id="car"/>
-        <label>Pickup</label>
-        <input id="pickup" type="date" name="pickup" />
-        <label>Return Date</label>
-        <input id="return" type="date" name="return" />
-    </div>
-</head>
-<body>
-    
-</body>
+        <select name="package">
+          <option>Toyota Corolla</option>
+          <option>Tesla Model 3</option>
+          <option>Toyota Camry</option>
+        </select>
+        <div class="flex-row">
+          <div class="flex-col">
+            <label>Pickup</label>
+            <input id="pickup" type="date" name="pickup" />
+          </div>
+          <div class="flex-col">
+            <label>Return Date</label>
+            <input id="return" type="date" name="return" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>
