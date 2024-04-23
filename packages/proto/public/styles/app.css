@@ -13,7 +13,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  color: var(--color-text-dark);
+  color: var(--color-text);
 }
 
 body {
@@ -50,16 +50,7 @@ nav a {
 }
 
 nav a:hover {
-  color: var(--color-text-dark);
-}
-
-button {
-  background-color: #4caf50;
-  color: white;
-  padding: var(--padding-sm) var(padding-md);
-  border: none;
-  cursor: pointer;
-  width: 100%;
+  color: var(--color-primary);
 }
 
 button:hover {
@@ -68,7 +59,7 @@ button:hover {
 
 h2 {
   font-size: 2rem;
-  color: var(--color-text-dark);
+  color: var(--color-text);
 }
 
 input[type="text"],
@@ -115,7 +106,7 @@ label {
   background: var(--alert);
   width: fit-content;
   height: fit-content;
-  color: var(--color-text-light);
+  color: var(--color-text);
 }
 
 .flex-row {

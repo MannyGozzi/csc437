@@ -9,19 +9,10 @@
     <script type="module" src="/js/drop-down.js"></script>
     <script type="module" src="/js/relay-event.js"></script>
     <script type="module" src="/js/template.js"></script>
+    <script type="module" src="/js/dark-mode.js"></script>
     <script type="module">
       import { relayEvent } from "/js/relay-event.js";
       window.relayEvent = relayEvent;
-    </script>
-    <script type="module">
-      function toggleDarkMode(page, checked) {
-        page.classList.toggle("dark-mode", checked);
-      }
-
-      document.body.addEventListener("dark-mode", (event) => {
-        console.log("toggling");
-        toggleDarkMode(event.currentTarget, event.detail.checked);
-      });
     </script>
   </head>
   <body>
@@ -36,11 +27,16 @@
         <a href="car.html">Car</a>
         <a href="cruise.html">Cruise</a>
       </div>
-        <img onclick="relayEvent(
+      <img
+        onclick="relayEvent(
             event, 
             'dark-mode', 
             {checked: event.target.checked}
-        )" src='images/icons/darkTheme.png' alt="Dark Theme" id="dark-theme-icon"/>
+        )"
+        src="images/icons/darkTheme.png"
+        alt="Dark Theme"
+        id="dark-theme-icon"
+      />
     </nav>
 
     <section class="center">
