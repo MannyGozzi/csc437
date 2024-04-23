@@ -16,6 +16,10 @@
   color: var(--color-text-dark);
 }
 
+body {
+  background: var(--color-bg);
+}
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -24,7 +28,7 @@ nav {
 }
 
 nav a {
-  color: var(--color-border);
+  color: var(--color-text);
   font-size: 1.5rem;
   text-decoration: none;
   margin: 0 1rem;
