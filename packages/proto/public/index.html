@@ -39,10 +39,10 @@
       />
     </nav>
 
-    <section class="center">
+    <div class="center">
       <div class="container">
         <h2>Home</h2>
-        <article class="services-grid">
+        <section class="services-grid">
           <a href="flight.html">
             <h3>Flights</h3>
           </a>
@@ -55,34 +55,34 @@
           <a href="cruise.html">
             <h3>Cruises</h3>
           </a>
-        </article>
+        </section>
+        <section>
+            <details>
+              <dl>
+                <dd class="destination">
+                  <html-fragment href="html/hanoi.html">
+                    <h3>
+                      <a href="#" onclick="relayEvent(event, 'html-fragment:open')">
+                        Hanoi
+                      </a>
+                    </h3>
+                  </html-fragment>
+                </dd>
+                <dd class="destination">
+                  <h3>
+                    <a
+                      onclick="loadDestination(
+                          'html/vietnam.html', 
+                          event.target.closest('dd'))"
+                    >
+                      Vietnam
+                    </a>
+                  </h3>
+                </dd>
+              </dl>
+            </details>
+        </section>
       </div>
-    </section>
-    <section>
-      <details>
-        <dl>
-          <dd class="destination">
-            <html-fragment href="html/hanoi.html">
-              <h3>
-                <a href="#" onclick="relayEvent(event, 'html-fragment:open')">
-                  Hanoi
-                </a>
-              </h3>
-            </html-fragment>
-          </dd>
-          <dd class="destination">
-            <h3>
-              <a
-                onclick="loadDestination(
-                    'html/vietnam.html', 
-                    event.target.closest('dd'))"
-              >
-                Vietnam
-              </a>
-            </h3>
-          </dd>
-        </dl>
-      </details>
-    </section>
+    </div>
   </body>
 </html>

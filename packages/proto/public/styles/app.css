@@ -86,7 +86,7 @@ label {
   display: flex;
   max-width: var(--max-width);
   width: 100%;
-  gap: 1rem;
+  gap: 2rem;
   flex-direction: column;
   justify-content: center;
 }
@@ -106,7 +106,7 @@ label {
   background: var(--alert);
   width: fit-content;
   height: fit-content;
-  color: var(--color-text);
+  color: var(--color-text-opp);
 }
 
 .flex-row {
@@ -143,8 +143,7 @@ label {
   font-size: 1.5rem;
   transition: all 0.3s;
 }
-
 .services-grid a:hover {
   background-color: var(--color-primary);
-  color: var(--color-text);
+  color: var(--color-text-opp);
 }
