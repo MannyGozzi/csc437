@@ -19,6 +19,16 @@
 body {
   background: var(--color-bg);
   color: var(--color-text);
+  margin-top: 5rem;
+}
+
+#dark-theme-icon {
+  width: 2rem;
+  height: 2rem;
+  background-color: white;
+  padding: 0.1rem;
+  margin: 0 2rem;
+  border-radius: 100rem;
 }
 
 nav {
@@ -26,17 +36,21 @@ nav {
   justify-content: space-between;
   align-items: center;
   background: var(--color-fg);
+  position: fixed;
+  box-sizing: content-box;
+  top: 0;
+  width: 100vw;
 }
 
 nav a {
   color: var(--color-text);
   font-size: 1.5rem;
   text-decoration: none;
-  margin: 0 1rem;
+  padding: 0 1rem;
 }
 
-nav > a:hover {
-  color: var(--color-primary);
+nav a:hover {
+  color: var(--color-text-dark);
 }
 
 button {

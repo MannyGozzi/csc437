@@ -9,7 +9,6 @@
     <script type="module" src="/js/drop-down.js"></script>
     <script type="module" src="/js/relay-event.js"></script>
     <script type="module" src="/js/template.js"></script>
-
     <script type="module">
       import { relayEvent } from "/js/relay-event.js";
       window.relayEvent = relayEvent;
@@ -37,14 +36,11 @@
         <a href="car.html">Car</a>
         <a href="cruise.html">Cruise</a>
       </div>
-      <label
-        onchange="relayEvent(
+        <img onclick="relayEvent(
             event, 
             'dark-mode', 
-            {checked: event.target.checked})"
-      >
-        <input type="checkbox" autocomplete="off" /> Dark mode
-      </label>
+            {checked: event.target.checked}
+        )" src='images/icons/darkTheme.png' alt="Dark Theme" id="dark-theme-icon"/>
     </nav>
 
     <section class="center">
