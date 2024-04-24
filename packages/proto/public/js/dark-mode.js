@@ -1,20 +1,18 @@
 const darkMode = localStorage.getItem("dark-mode") === "true";
 
 function enableDarkMode() {
-    document.body.classList.add('dark-mode');
-    localStorage.setItem("dark-mode", "true");
+  document.body.classList.add("dark-mode");
+  localStorage.setItem("dark-mode", "true");
 }
 
 function disableDarkMode() {
-    document.body.classList.remove('dark-mode');
-    localStorage.setItem("dark-mode", "false");
+  document.body.classList.remove("dark-mode");
+  localStorage.setItem("dark-mode", "false");
 }
 
 function setDarkMode(checked) {
-  if (checked) 
-    enableDarkMode();
-  else 
-    disableDarkMode();
+  if (checked) enableDarkMode();
+  else disableDarkMode();
 }
 
 setDarkMode(darkMode);
@@ -22,5 +20,5 @@ setDarkMode(darkMode);
 document.body.addEventListener("dark-mode", () => {
   const prev = localStorage.getItem("dark-mode") === "true";
   setDarkMode(!prev);
-//   console.log("Dark mode: " + !prev);
+  //   console.log("Dark mode: " + !prev);
 });

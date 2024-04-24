@@ -154,3 +154,19 @@ label {
   background-color: var(--color-primary);
   color: var(--color-text-opp);
 }
+
+button {
+  background: var(--color-fg);
+  color: var(--color-text);
+  border: 2px solid var(--color-border);
+  border-radius: var(--rounded);
+  padding: var(--padding-md) var(--padding-lg);
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: all 0.3s;
+}
+
+button:hover {
+  background: var(--color-text-opp);
+  color: var(--color-text);
+}
