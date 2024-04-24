@@ -74,11 +74,18 @@ select {
   border-color: var(--color-border);
   outline: none;
   padding: var(--padding-md) var(--padding-lg);
+  color: var(--color-text);
+}
+
+/* make color for date input follow dark/light mode */
+::-webkit-calendar-picker-indicator {
+  filter: var(--icon-filter);
 }
 
 label {
   font-size: 1.5rem;
   margin-bottom: calc(-1 * var(--padding-sm));
+  color: var(--text-color);
 }
 
 .container {
