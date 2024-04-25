@@ -3,6 +3,10 @@ Read the README.md under the `packages/proto` directory.
 
 ## Harder to Find Files
 
+**Miro PDF**
+
+* Root of repo. `miro.pdf`
+
 **Lab A6.** Dynamically Loaded Content
 
 * `index.html`, utilizes html fragments under `/html`
