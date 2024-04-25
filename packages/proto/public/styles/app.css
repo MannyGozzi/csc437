@@ -229,7 +229,7 @@ dt {
   flex-direction: column;
   position: absolute;
   background-color: var(--color-fg);
-  animation: slideDown 0.3s ease-in-out;
+  animation: slideIn 0.3s ease-in-out;
   gap: var(--padding-md);
   border-radius: var(--rounded);
   overflow: hidden;
@@ -252,7 +252,7 @@ dt {
   transform: translateX(-50%);
 }
 
-@keyframes slideDown {
+@keyframes slideIn {
   0% {
     transform: translateY(-1rem);
     opacity: 0;

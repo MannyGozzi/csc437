@@ -1,15 +1,5 @@
-## Dependencies
-
-```bash
-cd packages/proto
-yarn
-```
-
-## Run
-
-```bash
-yarn start
-```
+## Getting Started
+Read the README.md under the `packages/proto` directory.
 
 ## Harder to Find Files
 
