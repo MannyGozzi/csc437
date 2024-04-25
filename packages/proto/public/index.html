@@ -15,6 +15,7 @@
       import { relayEvent } from "/js/relay-event.js";
       window.relayEvent = relayEvent;
     </script>
+      <script type="module" src="/js/customItem.js"></script>
   </head>
   <body>
     <nav>
@@ -86,8 +87,7 @@
           </article>
         </section>
         <section>
-          <div id="template-container" />
-          <script type="module" src="/js/templateItem.js"></script>
+          <custom-item></custom-item>
         </section>
       </div>
     </div>
