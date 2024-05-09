@@ -11,7 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "http-server": "^14.1.1"
+    "dotenv": "^16.4.5",
+    "http-server": "^14.1.1",
+    "mongoose": "^8.3.4"
   },
   "devDependencies": {
     "prettier": "^3.2.5"
