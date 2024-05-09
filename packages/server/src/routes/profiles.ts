@@ -22,4 +22,11 @@ router.post("/", (req: Request, res: Response) => {
     .catch((err) => res.status(500).send(err));
 });
 
+router.get("/", (req: Request, res: Response) => {
+  profiles
+    .index()
+    .then((list: Profile[]) => res.json(list))
+    .catch((err) => res.status(500).send(err));
+});
+
 export default router;
