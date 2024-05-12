@@ -10,6 +10,7 @@
     <script type="module" src="/js/relay-event.js"></script>
     <script type="module" src="/js/dark-mode.js"></script>
     <script type="module" src="/js/html-loader.js"></script>
+    <script type="module" src="/js/profile-viewer.js"></script>
     <script type="module">
       import { relayEvent } from "/js/relay-event.js";
       window.relayEvent = relayEvent;
@@ -91,6 +92,7 @@
           </article>
         </section>
         <section>
+          <profile-view src="/api/profiles/hi" />
           <json-object src="/api/profiles/vietnam">
             <div onclick="relayEvent(event, 'json-object:open')">
               Vietnam

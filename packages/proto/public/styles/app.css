@@ -259,3 +259,9 @@ dt {
     opacity: 1;
   }
 }
+
+
+.border {
+  border: 3px solid var(--color-border);
+  border-radius: 2rem;
+}
