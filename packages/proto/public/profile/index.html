@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel</title>
+    <link rel="stylesheet" href="../styles/tokens.css" />
+    <link rel="stylesheet" href="../styles/app.css" />
+    <script type="importmap">
+        {
+          "imports": {
+            "@calpoly/mustang": "/node_modules/@calpoly/mustang/dist/mustang.mjs"
+          }
+        }
+      </script>
+    <script type="module" src="../js/drop-down.js"></script>
+    <script type="module" src="../js/relay-event.js"></script>
+    <script type="module" src="../js/dark-mode.js"></script>
+    <script type="module" src="../js/html-loader.js"></script>
+    <script type="module" src="../js/profile-viewer.js"></script>
+    <script type="module">
+      import { relayEvent } from "/js/relay-event.js";
+      window.relayEvent = relayEvent;
+    </script>
+    <script type="module" src="/js/json-loader.js"></script>
+    <script type="module" src="/js/customItem.js"></script>
+    <script type="module">
+        import { define, Auth } from "@calpoly/mustang";
+        define({ "mu-auth": Auth.Provider });
+    </script>
+  </head>
+  <body>
+    <nav>
+      <div class="logo-container">
+        <img id="logo" src="../logo.png" alt="logo" />
+        <h1>Travel</h1>
+      </div>
+      <div class="center">
+        <div class="dropdown">
+          <img
+            class="dropdown-btn"
+            id="burger-icon"
+            src="/images/icons/menu.png"
+          />
+          <div class="dropdown-content">
+            <a href="../flight.html">Flight</a>
+            <a href="../hotel.html">Hotel</a>
+            <a href="../car.html">Car</a>
+            <a href="../cruise.html">Cruise</a>
+            <a href="../newDestination.html">New Destination</a>
+          </div>
+        </div>
+        <img
+          onclick="relayEvent(
+            event, 
+            'dark-mode', 
+            {checked: 'undefined'}
+            )"
+          src="../images/icons/darkTheme.png"
+          alt="Dark Theme"
+          id="dark-theme-icon"
+        />
+      </div>
+    </nav>
+
+    <div class="center">
+      <div class="container">
+        <mu-auth provides="blazing:auth" redirect="../login.html">
+        <div class="flex-row">
+            <a href="../"><button>←</button></a>
+            <h2>Profile View</h2>
+          </div>
+        <section>
+          <profile-view src="/profiles/123" />
+        </section>
+      </div>
+        </mu-auth>
+    </div>
+  </body>
+</html>

@@ -1,11 +1,11 @@
 import { prepareTemplate } from "./template.js";
-import { loadJSON } from "./json-loader.js";
+import { Auth, Observer } from "@calpoly/mustang";
 
 export class ProfileViewElement extends HTMLElement {
   static template = prepareTemplate(`
     <template>
-        <link rel="stylesheet" href="styles/tokens.css" />
-        <link rel="stylesheet" href="styles/app.css" />
+        <link rel="stylesheet" href="/styles/tokens.css" />
+        <link rel="stylesheet" href="/styles/app.css" />
         <h3>Profile View [Id: <slot name="id"></slot>]</h3>
       <section class="container border">
         <dl>
@@ -34,7 +34,7 @@ export class ProfileViewElement extends HTMLElement {
 
   constructor() {
     super();
-
+    this._authObserver = new Observer(this, "blazing:auth");
     this.attachShadow({ mode: "open" }).appendChild(
       ProfileViewElement.template.cloneNode(true)
     );
@@ -44,20 +44,35 @@ export class ProfileViewElement extends HTMLElement {
     return this.getAttribute("src");
   }
 
+  get authorization() {
+    console.log("Authorization for user, ", this._user);
+    return (
+      this._user?.authenticated && {
+        Authorization: `Bearer ${this._user.token}`
+      }
+    );
+  }
+  
+
   connectedCallback() {
-    if (this.src) {
-      fetch(this.src)
-        .then(response => response.json())
-        .then(json => {
-            for (const [key, value] of Object.entries(json)) {
-                const slot = this.shadowRoot.querySelector(`slot[name="${key}"]`);
-                if (slot) {
-                    slot.textContent = value;
-                }
-            }
+    this._authObserver.observe(({ user }) => {
+        this._user = user;
+        if (this.src) {
+        fetch(this.src, {
+            headers: this.authorization
         })
-        .catch(error => console.error('Error fetching JSON:', error));
-    }
+            .then(response => response.json())
+            .then(json => {
+                for (const [key, value] of Object.entries(json)) {
+                    const slot = this.shadowRoot.querySelector(`slot[name="${key}"]`);
+                    if (slot) {
+                        slot.textContent = value;
+                    }
+                }
+            })
+            .catch(error => console.error('Error fetching JSON:', error));
+        }
+    });
   }
 }
 

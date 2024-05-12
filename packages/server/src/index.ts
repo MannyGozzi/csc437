@@ -14,12 +14,17 @@ const PORT = process.env.PORT;
 
 connect(process.env.MONGO_DB_NAME as string);
 
+/* Make non standard node_modules available */
+const nodeModules = path.resolve(__dirname, "../node_modules");
+console.log("Serving NPM packages from", nodeModules);
+app.use("/node_modules", express.static(nodeModules));
+
 /* Serve frontend code under proto package */
 const protoPublicDirectory = path.join(__dirname, "../../proto/public");
 app.use(express.json());
 app.use(express.static(protoPublicDirectory));
 app.use("/auth", AuthRoute);
-app.use("/api/profiles", authenticateUser, ProfilesRoute);
+app.use("/profiles", authenticateUser, ProfilesRoute);
 app.use("/api/destinations", DestinationsRoute);
 
 app.listen(PORT, () => {

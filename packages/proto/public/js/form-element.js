@@ -86,7 +86,7 @@ export class FormElement extends HTMLElement {
   connectedCallback() {
     this.shadowRoot.querySelector('form').addEventListener("submit", (e) => {
       e.preventDefault();
-      fetch('/api/profiles', {
+      fetch('/profiles', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

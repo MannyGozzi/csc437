@@ -58,9 +58,7 @@ h2 {
   color: var(--color-text);
 }
 
-input[type="text"],
-input[type="password"],
-input[type="date"],
+input,
 select {
   border-radius: var(--rounded);
   border-style: solid;
@@ -71,6 +69,7 @@ select {
   outline: none;
   padding: var(--padding-md) var(--padding-lg);
   color: var(--color-text);
+  margin-bottom: 1rem;
 }
 
 /* make color for date input follow dark/light mode */
@@ -227,7 +226,7 @@ dt {
   position: absolute;
   background-color: var(--color-fg);
   animation: slideIn 0.3s ease-in-out;
-  gap: var(--padding-md);
+  gap: var(--padding-sm);
   border-radius: var(--rounded);
   overflow: hidden;
   min-width: 10rem;
@@ -235,7 +234,7 @@ dt {
 }
 
 .dropdown-content a {
-  padding: var(--padding-md) var(--padding-lg);
+  padding: var(--padding-sm) var(--padding-lg);
   transition: all 0.2s ease-in-out;
 }
 

@@ -34,6 +34,9 @@ router.post("/register", (req: Request, res: Response) => {
       .then((creds) => generateAccessToken(creds.username))
       .then((token) => {
         res.status(201).send({ token: token });
+      })
+      .catch(() => {
+        res.status(409).send("Username exists");
       });
   }
 });
@@ -42,20 +45,20 @@ router.post("/login", (req: Request, res: Response) => {
   const { username, password } = req.body; // from form
 
   if (!username || !password) {
-    res.status(400).send("Bad request: Invalid input data.");
+    return res.status(400).send("Bad request: Invalid input data.");
   } else {
     credentials
       .verify(username, password)
       .then((goodUser: string) => generateAccessToken(goodUser))
       .then((token) => res.status(200).send({ token: token }))
-      .catch((error) => res.status(401).send("Unauthorized"));
+      .catch((error) => res.status(401).send("Unauthorized: " + error));
   }
 });
 
 export function authenticateUser(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   const authHeader = req.headers["authorization"];
   //Getting the 2nd part of the auth header (the token)

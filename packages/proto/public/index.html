@@ -6,6 +6,13 @@
     <title>Travel</title>
     <link rel="stylesheet" href="styles/tokens.css" />
     <link rel="stylesheet" href="styles/app.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "@calpoly/mustang": "/node_modules/@calpoly/mustang/dist/mustang.mjs"
+        }
+      }
+    </script>
     <script type="module" src="/js/drop-down.js"></script>
     <script type="module" src="/js/relay-event.js"></script>
     <script type="module" src="/js/dark-mode.js"></script>
@@ -17,6 +24,13 @@
     </script>
     <script type="module" src="/js/json-loader.js"></script>
     <script type="module" src="/js/customItem.js"></script>
+    <script type="module">
+      import { define, Auth } from "@calpoly/mustang";
+    
+      define({ "mu-auth": Auth.Provider });
+    </script>
+    <script type="module" src="/js/login-form.js"></script>
+    <script type="module" src="/js/nav-bar.js"></script>
   </head>
   <body>
     <nav>
@@ -32,11 +46,19 @@
             src="/images/icons/menu.png"
           />
           <div class="dropdown-content">
+            <a href="login.html">Login</a>
             <a href="flight.html">Flight</a>
             <a href="hotel.html">Hotel</a>
             <a href="car.html">Car</a>
             <a href="cruise.html">Cruise</a>
             <a href="newDestination.html">New Destination</a>
+            <mu-auth provides="blazing:auth" redirect="login.html">
+            <a
+            href="#"
+            onclick="relayEvent(event, 'auth:message', ['auth/signout'])">
+            Sign out
+          </a>
+          </mu-auth>
           </div>
         </div>
         <img
@@ -71,6 +93,9 @@
           <a href="newDestination.html">
             <h3>New Destination</h3>
           </a>
+          <a href="/profile/index.html">
+            <h3>View Profile</h3>
+          </a>
         </section>
         <section>
           <h2>Quick Destinations</h2>
@@ -92,7 +117,9 @@
           </article>
         </section>
         <section>
-          <profile-view src="/api/profiles/hi" />
+          <mu-auth provides="blazing:auth" redirect="login.html">
+            <profile-view src="/profiles/hi" />
+          </mu-auth>
           <json-object src="/api/profiles/vietnam">
             <div onclick="relayEvent(event, 'json-object:open')">
               Vietnam
