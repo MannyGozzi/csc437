@@ -1,6 +1,12 @@
+import { DropdownElement, Events, define } from "@calpoly/mustang";
+
 import { LitElement, css, html } from "lit";
 
 export class TravelHeader extends LitElement {
+  static uses = define({
+    "drop-down": DropdownElement
+  });
+
   render() {
     return html`
       <nav>
@@ -31,11 +37,10 @@ export class TravelHeader extends LitElement {
             </div>
           </div>
           <img
-            onclick="relayEvent(
-            event, 
-            'dark-mode', 
-            {checked: 'undefined'}
-            )"
+            @click=${(ev: InputEvent) =>{
+              Events.relay(ev, "dark-mode", {
+              checked: undefined
+            })}}
             src="images/icons/darkTheme.png"
             alt="Dark Theme"
             id="dark-theme-icon"
