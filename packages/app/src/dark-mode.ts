@@ -10,7 +10,7 @@ function disableDarkMode() {
   localStorage.setItem("dark-mode", "false");
 }
 
-function setDarkMode(checked) {
+function setDarkMode(checked: boolean) {
   if (checked) enableDarkMode();
   else disableDarkMode();
 }

@@ -1,6 +1,11 @@
 import { DropdownElement, Events, define } from "@calpoly/mustang";
-
 import { LitElement, css, html } from "lit";
+import "../dark-mode";
+
+function toggleDarkMode(ev: InputEvent) {
+  Events.relay(ev, "dark-mode", {
+  checked: undefined
+})}
 
 export class TravelHeader extends LitElement {
   static uses = define({
@@ -37,10 +42,7 @@ export class TravelHeader extends LitElement {
             </div>
           </div>
           <img
-            @click=${(ev: InputEvent) =>{
-              Events.relay(ev, "dark-mode", {
-              checked: undefined
-            })}}
+            @click=${toggleDarkMode}
             src="images/icons/darkTheme.png"
             alt="Dark Theme"
             id="dark-theme-icon"

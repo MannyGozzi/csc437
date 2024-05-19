@@ -20,5 +20,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "public/dark-mode.js"]
+  "include": ["src", "src/dark-mode.ts"]
 }
