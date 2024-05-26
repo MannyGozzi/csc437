@@ -28,7 +28,7 @@ export class TravelHeader extends LitElement {
               src="/images/icons/menu.png"
             />
             <div class="dropdown-content">
-              <a href="login.html">Login</a>
+              <a href="login.html?next=/">Login</a>
               <a href="flight.html">Flight</a>
               <a href="hotel.html">Hotel</a>
               <a href="car.html">Car</a>

@@ -16,7 +16,7 @@ export default function update(
       break;
     case "tour/select":
       getTour(message[1], user)
-        .then((tour) => tour)
+        .then((tour) => apply((model) => ({ ...model, tour })))
         .catch((error: Error) => {
           console.error(error);
         });
