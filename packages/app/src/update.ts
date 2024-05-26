@@ -90,6 +90,8 @@ function getTour(
   },
   user: Auth.User,
 ) {
+  console.log("GETTING TOUR, auth object:")
+  console.log(user)
   return fetch(`/api/tour/${msg.tourid}`, {
     method: "GET",
     headers: {

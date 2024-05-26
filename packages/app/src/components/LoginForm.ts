@@ -1,7 +1,5 @@
 import { LitElement, html } from 'lit';
-import '../../../app/restful-form.js';
 import { Events } from '@calpoly/mustang';
-
 
 export class LoginForm extends LitElement {
   next: string | null;
@@ -22,7 +20,7 @@ export class LoginForm extends LitElement {
 
 handleFormCreated(event: any) {
     const { token, redirect } = event.detail.created;
-    Events.relay(event, "auth/signin", { token, redirect }); // Pass the correct number of arguments
+    Events.relay(event, "auth/signin", { token, redirect });
 }
 
   render() {
@@ -33,5 +31,3 @@ handleFormCreated(event: any) {
     `;
   }
 }
-
-customElements.define('login-form', LoginForm);

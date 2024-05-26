@@ -24,7 +24,7 @@ const protoPublicDirectory = path.join(__dirname, "../../proto/public");
 app.use(express.json());
 app.use(express.static(protoPublicDirectory));
 app.use("/auth", AuthRoute);
-app.use("/api/tour", authenticateUser, ProfilesRoute);
+app.use("/api/tour", ProfilesRoute);
 app.use("/api/destinations", DestinationsRoute);
 
 app.listen(PORT, () => {

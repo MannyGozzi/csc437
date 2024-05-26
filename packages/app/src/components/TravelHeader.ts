@@ -1,4 +1,4 @@
-import { DropdownElement, Events, define } from "@calpoly/mustang";
+import { Events } from "@calpoly/mustang";
 import { LitElement, css, html } from "lit";
 import "../dark-mode";
 
@@ -9,15 +9,12 @@ function toggleDarkMode(ev: InputEvent) {
 }
 
 export class TravelHeader extends LitElement {
-  static uses = define({
-    "drop-down": DropdownElement,
-  });
 
   render() {
     return html`
       <nav>
         <div class="logo-container">
-          <img id="logo" src="images/icons/logo.png" alt="logo" />
+          <img id="logo" src="/images/icons/logo.png" alt="logo" />
           <h1>Travel</h1>
         </div>
         <div class="center">
@@ -28,12 +25,12 @@ export class TravelHeader extends LitElement {
               src="/images/icons/menu.png"
             />
             <div class="dropdown-content">
-              <a href="login.html?next=/">Login</a>
-              <a href="flight.html">Flight</a>
-              <a href="hotel.html">Hotel</a>
-              <a href="car.html">Car</a>
-              <a href="cruise.html">Cruise</a>
-              <a href="newDestination.html">New Destination</a>
+              <a href="/app/login?next=/app">Login</a>
+              <a href="/app/flight">Flight</a>
+              <a href="/app/hotel">Hotel</a>
+              <a href="/app/car">Car</a>
+              <a href="/app/cruise">Cruise</a>
+              <a href="/app/newDestination">New Destination</a>
               <a
                 href="#"
                 onclick="relayEvent(event, 'auth:message', ['auth/signout'])"
@@ -44,7 +41,7 @@ export class TravelHeader extends LitElement {
           </div>
           <img
             @click=${toggleDarkMode}
-            src="images/icons/darkTheme.png"
+            src="/images/icons/darkTheme.png"
             alt="Dark Theme"
             id="dark-theme-icon"
           />

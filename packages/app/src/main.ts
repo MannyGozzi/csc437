@@ -1,10 +1,46 @@
-import { define, Auth, Store } from "@calpoly/mustang";
+import { define, Auth, Store, History, Switch } from "@calpoly/mustang";
+import { html } from "lit";
 import { TravelHeader } from "./components/TravelHeader";
 import { Model, init } from "./model";
 import { Msg } from "./messages";
 import update from "./update";
 import { TourViewElement } from "./views/tour-view";
 import { LoginForm } from "./components/LoginForm";
+import { HomeElement } from "./views/home-view";
+import { RestfulFormElement } from "./views/restful-form";
+import { LoginPage } from "./views/login-page";
+import { RegisterPage } from "./views/register-page";
+
+const routes = [
+  {
+    path: "/app/tour/:tourid",
+    view: (params: Switch.Params) => html`
+      <tour-view tour-id=${params.tourid}></tour-view>
+    `
+  },
+  {
+    path: "/app",
+    view: () => html`
+      <home-view><p>Home</p></home-view>
+    `
+  },
+  {
+    path: "/",
+    redirect: "/app"
+  },
+  {
+    path: "/app/login",
+    view: () => html`
+      <login-page></login-page>
+    `
+  },
+  {
+    path: "/app/register",
+    view: () => html`
+      <register-page></register-page>
+    `
+  }
+];
 
 define({
   "mu-auth": Auth.Provider,
@@ -13,7 +49,17 @@ define({
       super(update, init, "blazing:auth");
     }
   },
+  "mu-history": History.Provider,
+  "mu-switch": class AppSwitch extends Switch.Element {
+    constructor() {
+      super(routes, "blazing:history");
+    }
+  },
+  "restful-form": RestfulFormElement,
   "travel-header": TravelHeader,
   "tour-view": TourViewElement,
-  "login-form": LoginForm 
+  "login-form": LoginForm ,
+  "home-view": HomeElement,
+  "login-page": LoginPage,
+  "register-page": RegisterPage
 });
