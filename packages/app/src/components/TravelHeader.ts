@@ -4,12 +4,13 @@ import "../dark-mode";
 
 function toggleDarkMode(ev: InputEvent) {
   Events.relay(ev, "dark-mode", {
-  checked: undefined
-})}
+    checked: undefined,
+  });
+}
 
 export class TravelHeader extends LitElement {
   static uses = define({
-    "drop-down": DropdownElement
+    "drop-down": DropdownElement,
   });
 
   render() {

@@ -1,4 +1,4 @@
-import { prepareTemplate } from "./template.js";
+import { prepareTemplate } from "../proto/public/js/template.js";
 import { Observer } from "@calpoly/mustang";
 
 export class RestfulFormElement extends HTMLElement {

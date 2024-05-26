@@ -1,6 +1,6 @@
 import { prepareTemplate } from "./template.js";
 import { relayEvent } from "./relay-event.js";
-import "./restful-form.js";
+import "../../../app/restful-form.js";
 
 export class NavbarElement extends HTMLElement {
   static template = prepareTemplate(`

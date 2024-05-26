@@ -6,73 +6,44 @@
     <link rel="stylesheet" href="styles/tokens.css" />
     <link rel="stylesheet" href="styles/app.css" />
     <title>Travel</title>
-
-    <script type="module">
-      import { define, Auth, Events } from "@calpoly/mustang";
-      import { TravelHeader } from "/src/components/TravelHeader";
-      define({
-        "mu-auth": Auth.Provider,
-        "travel-header": TravelHeader,
-      });
-      window.relayEvent = Events.relay;
-    </script>
+    <script type="module" src="/src/main"></script>
   </head>
   <body>
-    <mu-auth>
-      <travel-header> </travel-header>
-      <div class="center">
-        <div class="container">
-          <h2>Home</h2>
-          <section class="services-grid">
-            <a href="flight.html">
-              <h3>Flights</h3>
-            </a>
-            <a href="hotel.html">
-              <h3>Hotels</h3>
-            </a>
-            <a href="car.html">
-              <h3>Cars</h3>
-            </a>
-            <a href="cruise.html">
-              <h3>Cruises</h3>
-            </a>
-            <a href="newDestination.html">
-              <h3>New Destination</h3>
-            </a>
-            <a href="/profile/index.html">
-              <h3>View Profile</h3>
-            </a>
-          </section>
-          <section>
-            <h2>Quick Destinations</h2>
-            <article class="destination">
-              <html-fragment href="html/vietnam.html">
-                <h3>
-                  <a href="#" onclick="relayEvent(event, 'html-fragment:open')">
-                    Việt Nam
-                  </a>
-                </h3>
-              </html-fragment>
-              <html-fragment href="html/thailand.html">
-                <h3>
-                  <a href="#" onclick="relayEvent(event, 'html-fragment:open')">
-                    Thailand
-                  </a>
-                </h3>
-              </html-fragment>
-            </article>
-          </section>
-          <section>
-            <mu-auth provides="blazing:auth" redirect="login.html">
-              <profile-view src="/profiles/hi" />
-            </mu-auth>
-            <json-object src="/api/profiles/vietnam">
-              <div onclick="relayEvent(event, 'json-object:open')">Vietnam</div>
-            </json-object>
-            <custom-item></custom-item>
-          </section>
+    <mu-auth provides="blazing:auth" redirect="./login.html">
+      <mu-store provides="blazing:model">
+        <travel-header></travel-header>
+        <div class="center">
+          <div class="container">
+            <h2>Home</h2>
+            <tour-view></tour-view>
+            <section class="services-grid">
+              <a href="flight.html">
+                <h3>Flights</h3>
+              </a>
+              <a href="hotel.html">
+                <h3>Hotels</h3>
+              </a>
+              <a href="car.html">
+                <h3>Cars</h3>
+              </a>
+              <a href="cruise.html">
+                <h3>Cruises</h3>
+              </a>
+              <a href="newDestination.html">
+                <h3>New Destination</h3>
+              </a>
+              <a href="/profile/index.html">
+                <h3>View Profile</h3>
+              </a>
+            </section>
+            <section>
+              <h2>Quick Destinations</h2>
+              <article class="destination"></article>
+            </section>
+            <section></section>
+          </div>
         </div>
-      </div>
+      </mu-store>
     </mu-auth>
   </body>
 </html>

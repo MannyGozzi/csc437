@@ -4,11 +4,11 @@ import profiles from "../services/profile-svc";
 
 const router = express.Router();
 
-router.get("/:userid", (req: Request, res: Response) => {
-  const { userid } = req.params;
+router.get("/:tourid", (req: Request, res: Response) => {
+  const { tourid } = req.params;
 
   profiles
-    .get(userid)
+    .get(tourid)
     .then((profile: Profile) => res.json(profile))
     .catch((err) => res.status(404).end());
 });
@@ -29,12 +29,12 @@ router.get("/", (req: Request, res: Response) => {
     .catch((err) => res.status(500).send(err));
 });
 
-router.put("/:userid", (req: Request, res: Response) => {
-  const { userid } = req.params;
+router.put("/:tourid", (req: Request, res: Response) => {
+  const { tourid } = req.params;
   const newProfile = req.body;
 
   profiles
-    .update(userid, newProfile)
+    .update(tourid, newProfile)
     .then((profile: Profile) => res.json(profile))
     .catch((err) => res.status(404).end());
 });

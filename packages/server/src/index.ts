@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import DestinationsRoute from "./routes/destinations";
-import ProfilesRoute from "./routes/profiles";
+import ProfilesRoute from "./routes/tours";
 import AuthRoute, { authenticateUser } from "./routes/auth";
 import path from "path";
 import { connect } from "./services/mongo";
@@ -24,7 +24,7 @@ const protoPublicDirectory = path.join(__dirname, "../../proto/public");
 app.use(express.json());
 app.use(express.static(protoPublicDirectory));
 app.use("/auth", AuthRoute);
-app.use("/profiles", authenticateUser, ProfilesRoute);
+app.use("/api/tour", authenticateUser, ProfilesRoute);
 app.use("/api/destinations", DestinationsRoute);
 
 app.listen(PORT, () => {
