@@ -21,7 +21,7 @@ const routes = [
   {
     path: "/app",
     view: () => html`
-      <home-view><p>Home</p></home-view>
+      <home-view></home-view>
     `
   },
   {
