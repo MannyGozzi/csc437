@@ -13,10 +13,10 @@ export class TravelHeader extends LitElement {
   render() {
     return html`
       <nav>
-        <div class="logo-container">
-          <img id="logo" src="/images/icons/logo.png" alt="logo" />
+      <a href="/app"><div class="logo-container">
+        <img id="logo" src="/images/icons/logo.png" alt="logo" />
           <h1>Travel</h1>
-        </div>
+        </div></a>
         <div class="center">
           <div class="dropdown">
             <img
