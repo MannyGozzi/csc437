@@ -61,13 +61,13 @@ function saveProfile(
 
 function saveTour(
   msg: {
-    id: string;
+    tourid: string;
     tour: Tour;
   },
   user: Auth.User,
 ) {
-  return fetch(`/api/tour/${msg.id}`, {
-    method: "PUT",
+  return fetch(`/api/tour`, {
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
       ...Auth.headers(user),
