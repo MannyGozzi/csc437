@@ -1,6 +1,6 @@
 import { prepareTemplate } from "./template.js";
 import { relayEvent } from "./relay-event.js";
-import "../../../app/src/views/restful-form.js";
+import "../../../app/src/components/restful-form.js";
 
 export class LoginFormElement extends HTMLElement {
   static template = prepareTemplate(`

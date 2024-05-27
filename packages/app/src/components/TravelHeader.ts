@@ -30,7 +30,7 @@ export class TravelHeader extends LitElement {
               <a href="/app/hotel">Hotel</a>
               <a href="/app/car">Car</a>
               <a href="/app/cruise">Cruise</a>
-              <a href="/app/newDestination">New Destination</a>
+              <a href="/app/new-destination">New Destination</a>
               <a
                 href="#"
                 onclick="relayEvent(event, 'auth:message', ['auth/signout'])"

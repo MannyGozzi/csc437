@@ -22,7 +22,7 @@ export class HomeElement extends LitElement {
             <a href="/app/cruise">
               <h3>Cruises</h3>
             </a>
-            <a href="/app/newDestination">
+            <a href="/app/new-destination">
               <h3>New Destination</h3>
             </a>
             <a href="/app/profile">
