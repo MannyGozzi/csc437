@@ -10,6 +10,7 @@ import { HomeElement } from "./views/home-view";
 import { RestfulFormElement } from "./views/restful-form";
 import { LoginPage } from "./views/login-page";
 import { RegisterPage } from "./views/register-page";
+import { FlightPage } from "./views/flight-page";
 
 const routes = [
   {
@@ -39,6 +40,12 @@ const routes = [
     view: () => html`
       <register-page></register-page>
     `
+  },
+  {
+    path: "/app/flight",
+    view: () => html`
+      <flight-page></flight-page>
+    `
   }
 ];
 
@@ -61,5 +68,6 @@ define({
   "login-form": LoginForm ,
   "home-view": HomeElement,
   "login-page": LoginPage,
-  "register-page": RegisterPage
+  "register-page": RegisterPage,
+  "flight-page": FlightPage
 });

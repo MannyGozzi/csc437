@@ -1,15 +1,11 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flights</title>
-    <link rel="stylesheet" href="styles/tokens.css" />
-    <link rel="stylesheet" href="styles/app.css" />
-    <script type="module" src="/src/main"></script>
-  </head>
-  <body>
-    <section class="center">
+import { html, LitElement } from "lit";
+
+export class FlightPage extends LitElement {
+    render() {
+        return html`
+        <link rel="stylesheet" href="/styles/app.css" />
+        <link rel="stylesheet" href="/styles/tokens.css" />
+        <section class="center">
       <div class="container">
         <div class="flex-row">
           <a href="../"><button>←</button></a>
@@ -38,6 +34,6 @@
           </div>
         </div>
       </div>
-    </section>
-  </body>
-</html>
+    </section>`
+    }
+}

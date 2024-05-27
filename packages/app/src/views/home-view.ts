@@ -10,22 +10,22 @@ export class HomeElement extends LitElement {
           <h2>Home</h2>
           <tour-view></tour-view>
           <section class="services-grid">
-            <a href="flight.html">
+            <a href="/app/flight">
               <h3>Flights</h3>
             </a>
-            <a href="hotel.html">
+            <a href="/app/hotel">
               <h3>Hotels</h3>
             </a>
-            <a href="car.html">
+            <a href="/app/car">
               <h3>Cars</h3>
             </a>
-            <a href="cruise.html">
+            <a href="/app/cruise">
               <h3>Cruises</h3>
             </a>
-            <a href="newDestination.html">
+            <a href="/app/newDestination">
               <h3>New Destination</h3>
             </a>
-            <a href="/profile/index.html">
+            <a href="/app/profile">
               <h3>View Profile</h3>
             </a>
           </section>
