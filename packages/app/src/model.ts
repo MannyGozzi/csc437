@@ -1,8 +1,7 @@
-import { Profile, Credential, Tour } from "server/models";
+import { Credential, Tour } from "server/models";
 
 export interface Model {
   credential?: Credential;
-  profile?: Profile;
   tour?: Tour;
 }
 

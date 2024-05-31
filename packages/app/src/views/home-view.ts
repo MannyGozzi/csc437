@@ -1,14 +1,14 @@
 import { html, LitElement } from "lit";
 
 export class HomeElement extends LitElement {
-    render() {
-        return html`
-        <link rel="stylesheet" href="/styles/app.css" />
-        <link rel="stylesheet" href="/styles/tokens.css" />
-        <div class="center">
+  render() {
+    return html` <link rel="stylesheet" href="/styles/app.css" />
+      <link rel="stylesheet" href="/styles/tokens.css" />
+      <div class="center">
         <div class="container">
           <h2>Home</h2>
-          <tour-view></tour-view>
+          <tour-view tour-id="new place"></tour-view>
+          <items-list></items-list>
           <section class="services-grid">
             <a href="/app/flight">
               <h3>Flights</h3>
@@ -35,6 +35,6 @@ export class HomeElement extends LitElement {
           </section>
           <section></section>
         </div>
-      </div>`
-    }
+      </div>`;
+  }
 }

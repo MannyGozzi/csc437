@@ -1,7 +1,7 @@
 import { Auth, Update } from "@calpoly/mustang";
 import { Msg } from "./messages";
 import { Model } from "./model";
-import { Profile, Tour } from "server/models";
+import { Tour } from "server/models";
 
 export default function update(
   message: Msg,
@@ -9,11 +9,6 @@ export default function update(
   user: Auth.User,
 ) {
   switch (message[0]) {
-    case "profile/save":
-      saveProfile(message[1], user).then((profile) =>
-        apply((model) => ({ ...model, profile })),
-      );
-      break;
     case "tour/select":
       getTour(message[1], user)
         .then((tour) => apply((model) => ({ ...model, tour })))
@@ -24,6 +19,10 @@ export default function update(
     case "tour/save":
       saveTour(message[1], user)
         .then((tour) => apply((model) => ({ ...model, tour })))
+        .then(() => {
+          const { onSuccess } = message[1];
+          if (onSuccess) onSuccess();
+        })
         .catch((error: Error) => {
           console.error(error);
         });
@@ -33,32 +32,6 @@ export default function update(
       throw new Error(`Unhandled Auth message "${unhandled}"`);
   }
 }
-
-function saveProfile(
-  msg: {
-    id: string;
-    profile: Profile;
-  },
-  user: Auth.User,
-) {
-  return fetch(`/api/tour/${msg.id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      ...Auth.headers(user),
-    },
-    body: JSON.stringify(msg.profile),
-  })
-    .then((response: Response) => {
-      if (response.status === 200) return response.json();
-      return undefined;
-    })
-    .then((json: unknown) => {
-      if (json) return json as Profile;
-      return undefined;
-    });
-}
-
 function saveTour(
   msg: {
     tourid: string;
@@ -79,7 +52,7 @@ function saveTour(
       return undefined;
     })
     .then((json: unknown) => {
-      if (json) return json as Profile;
+      if (json) return json as Tour;
       return undefined;
     });
 }
@@ -90,8 +63,8 @@ function getTour(
   },
   user: Auth.User,
 ) {
-  console.log("GETTING TOUR, auth object:")
-  console.log(user)
+  console.log("GETTING TOUR, auth object:");
+  console.log(user);
   return fetch(`/api/tour/${msg.tourid}`, {
     method: "GET",
     headers: {

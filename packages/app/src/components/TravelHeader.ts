@@ -9,14 +9,21 @@ function toggleDarkMode(ev: InputEvent) {
 }
 
 export class TravelHeader extends LitElement {
+  signOut(event: Event) {
+    Events.relay(event, "auth:message", ["auth/signout"]);
+  }
 
   render() {
     return html`
       <nav>
-      <a href="/app"><div class="logo-container">
-        <img id="logo" src="/images/icons/logo.png" alt="logo" />
-          <h1>Travel</h1>
-        </div></a>
+        <link rel="stylesheet" href="/styles/app.css" />
+        <link rel="stylesheet" href="/styles/tokens.css" />
+        <a href="/app"
+          ><div class="logo-container">
+            <img id="logo" src="/images/icons/logo.png" alt="logo" />
+            <h1>Travel</h1>
+          </div></a
+        >
         <div class="center">
           <div class="dropdown">
             <img
@@ -25,18 +32,13 @@ export class TravelHeader extends LitElement {
               src="/images/icons/menu.png"
             />
             <div class="dropdown-content">
-              <a href="/app/login?next=/app">Login</a>
+              <a href="/login.html?next=/app">Login</a>
               <a href="/app/flight">Flight</a>
               <a href="/app/hotel">Hotel</a>
               <a href="/app/car">Car</a>
               <a href="/app/cruise">Cruise</a>
               <a href="/app/new-destination">New Destination</a>
-              <a
-                href="#"
-                onclick="relayEvent(event, 'auth:message', ['auth/signout'])"
-              >
-                Sign out
-              </a>
+              <a href="#" @click=${this.signOut}> Sign out </a>
             </div>
           </div>
           <img
@@ -49,113 +51,4 @@ export class TravelHeader extends LitElement {
       </nav>
     `;
   }
-
-  static styles = css`
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: var(--color-fg);
-      position: fixed;
-      box-sizing: content-box;
-      top: 0;
-      width: 100vw;
-    }
-
-    nav a {
-      color: var(--color-text);
-      font-size: 1.5rem;
-      text-decoration: none;
-      padding: 0 1rem;
-    }
-
-    nav a:hover {
-      color: var(--color-primary);
-    }
-
-    #logo {
-      width: 5rem;
-    }
-
-    .logo-container {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      color: var(--color-text);
-    }
-
-    /* navbar =============================== */
-    .dropdown {
-      position: static;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-      width: fit-content;
-    }
-
-    .dropdown-btn {
-      height: 3rem;
-      width: 3rem;
-      box-shadow: var(--shadow);
-      border-radius: var(--rounded);
-      background: white;
-      padding: 0.2rem;
-    }
-
-    .dropdown-content {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      background-color: var(--color-fg);
-      animation: slideIn 0.3s ease-in-out;
-      gap: var(--padding-sm);
-      border-radius: var(--rounded);
-      overflow: hidden;
-      min-width: 10rem;
-      box-shadow: var(--shadow);
-    }
-
-    .dropdown-content a {
-      padding: var(--padding-sm) var(--padding-lg);
-      transition: all 0.2s ease-in-out;
-    }
-
-    .dropdown-content a:hover {
-      background-color: var(--color-primary);
-      color: var(--color-text-opp);
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: flex;
-      transform: translateX(-50%);
-    }
-
-    @keyframes slideIn {
-      0% {
-        transform: translateY(-1rem);
-        opacity: 0;
-      }
-      100% {
-        transform: translateY(0), translateX(-50%);
-        opacity: 1;
-      }
-    }
-
-    #dark-theme-icon {
-      width: 2rem;
-      height: 2rem;
-      background-color: white;
-      padding: 0.1rem;
-      margin: 0 2rem;
-      border-radius: 100rem;
-    }
-    .center {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-    }
-  `;
 }

@@ -3,10 +3,10 @@ import { html, LitElement } from "lit";
 
 define({ "restful-form": Rest.FormElement });
 
-export class LoginForm extends LitElement {
+export class RegisterForm extends LitElement {
   render() {
     return html`
-      <restful-form new src="/auth/login">
+      <restful-form new src="/auth/register">
         <slot></slot>
       </restful-form>
     `;
@@ -24,7 +24,7 @@ export class LoginForm extends LitElement {
       const detail = (event as CustomEvent).detail;
       const { token } = detail.created;
       const redirect = this.next || "/";
-      console.log("Login successful", detail, redirect);
+      console.log("Signup successful", detail, redirect);
 
       Events.relay(event, "auth:message", ["auth/signin", { token, redirect }]);
     });

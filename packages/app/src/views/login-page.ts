@@ -1,8 +1,8 @@
 import { html, LitElement } from "lit";
 
 export class LoginPage extends LitElement {
-    render() {
-        return html`
+  render() {
+    return html`
         <link rel="stylesheet" href="/styles/app.css" />
         <link rel="stylesheet" href="/styles/tokens.css" />
         <div class="center">
@@ -14,6 +14,7 @@ export class LoginPage extends LitElement {
                 <span>Username:</span>
                 <input name="username" autocomplete="off" />
               </label>
+              </label>
               <label>
                 <span>Password:</span>
                 <input type="password" name="password" />
@@ -21,11 +22,11 @@ export class LoginPage extends LitElement {
             </login-form>
             <p>
               Or did you want to
-              <a href="/app/register">Sign up as a new user</a>
+              <a href="/register.html">Sign up as a new user</a>
               ?
             </p>
           </main>
         </div>
-      </div>`
-    }
+      </div>`;
+  }
 }

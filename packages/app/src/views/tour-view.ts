@@ -1,28 +1,20 @@
-import { View } from "@calpoly/mustang";
-import { html } from "lit";
-import { property } from "lit/decorators.js";
+import { html, LitElement } from "lit";
+import { property, state } from "lit/decorators.js";
 import { Tour } from "server/models";
 import { Msg } from "../messages";
 import { Model } from "../model";
 
-export class TourViewElement extends View<Model, Msg> {
-  @property({ attribute: "tour-id", reflect: true })
-  tourid = "hi";
+import { define, Form, History, InputArray, View } from "@calpoly/mustang";
 
+export class TourViewer extends LitElement {
   @property()
-  get tour(): Tour | undefined {
-    return this.model.tour;
-  }
-
-  constructor() {
-    super("blazing:model");
-  }
+  tourid?: string;
 
   render() {
     return html`
       <link rel="stylesheet" href="/styles/tokens.css" />
       <link rel="stylesheet" href="/styles/app.css" />
-      <h3>Tour View [Id: ${this.model.tour?.id}]</h3>
+      <h3>Tour View [Id: ${this.tourid}]</h3>
       <section class="container border">
         <dl>
           <div class="flex-row">
@@ -48,11 +40,139 @@ export class TourViewElement extends View<Model, Msg> {
       </section>
     `;
   }
+}
+
+export class TourEditor extends LitElement {
+  static uses = define({
+    "mu-form": Form.Element,
+    "input-array": InputArray.Element,
+  });
+
+  @property()
+  get tour(): Tour | undefined {
+    return this.tour;
+  }
+
+  @property({ attribute: false })
+  init?: Tour;
+
+  render() {
+    return html` <link rel="stylesheet" href="/styles/tokens.css" />
+      <link rel="stylesheet" href="/styles/app.css" />
+      <h3>Tour View [Id: ${this.tour?.id}]</h3>
+      <section class="container border">
+        <button class="delete">Delete</button>
+        <mu-form .init=${this.init}>
+          <label>
+            <span>Name</span>
+            <input name="name" />
+          </label>
+          <label>
+            <span>Nickname</span>
+            <input name="nickname" />
+          </label>
+          <label>
+            <span>Home</span>
+            <input name="home" />
+          </label>
+          <label>
+            <span>Airports</span>
+            <input name="airports" />
+          </label>
+          <label>
+            <span>Avatar</span>
+            <input name="avatar" />
+          </label>
+          <label>
+            <span>Color</span>
+            <input name="color" />
+          </label>
+        </mu-form>
+      </section>`;
+  }
+}
+
+export class TourViewElement extends View<Model, Msg> {
+  static uses = define({
+    "tour-viewer": TourViewer,
+    "tour-editor": TourEditor,
+  });
+
+  @property({ type: Boolean, reflect: true })
+  edit = false;
+
+  @property({ attribute: "tour-id", reflect: true })
+  tourid = "";
+
+  @state()
+  get tour(): Tour | undefined {
+    return this.model.tour;
+  }
+
+  constructor() {
+    super("blazing:model");
+    // this.addEventListener("mu-form:submit", (event) =>
+    //   this._handleSubmit(event as Form.SubmitEvent<Profile>)
+    // );
+  }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+    super.attributeChangedCallback(name, oldValue, newValue);
     if (name === "tour-id" && oldValue !== newValue && newValue) {
+      console.log("Tour Page:", newValue);
       this.dispatchMessage(["tour/select", { tourid: newValue }]);
     }
-    super.attributeChangedCallback(name, oldValue, newValue);
+  }
+  render() {
+    const {
+      color,
+      avatar,
+      name,
+      id,
+      nickname,
+      home,
+      airports = [],
+    } = this.tour || {};
+
+    const airports_html = airports.map((s) => html` <li>${s}</li> `);
+
+    return this.edit
+      ? html`
+          <tour-editor
+            tourid=${id}
+            .init=${this.tour}
+            @mu-form:submit=${(event: Form.SubmitEvent<Tour>) =>
+              this._handleSubmit(event)}
+          >
+          </tour-editor>
+        `
+      : html`
+          <tour-viewer username=${id}>
+            <span slot="name">${name}</span>
+            <span slot="userid">${id}</span>
+            <span slot="nickname">${nickname}</span>
+            <span slot="home">${home}</span>
+            <span slot="avatar">${avatar}</span>
+            <span slot="color">${color}</span>
+            <ul slot="airports">
+              ${airports_html}
+            </ul>
+          </tour-viewer>
+        `;
+  }
+
+  _handleSubmit(event: Form.SubmitEvent<Tour>) {
+    console.log("Handling submit of mu-form");
+    this.dispatchMessage([
+      "tour/save",
+      {
+        tourid: this.tourid,
+        tour: event.detail,
+        onSuccess: () =>
+          History.dispatch(this, "history/navigate", {
+            href: `/app/tour/${this.tourid}`,
+          }),
+      },
+    ]);
   }
 }
