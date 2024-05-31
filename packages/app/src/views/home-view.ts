@@ -7,7 +7,7 @@ export class HomeElement extends LitElement {
       <div class="center">
         <div class="container">
           <h2>Home</h2>
-          <tour-view tour-id="new place"></tour-view>
+          <tour-view tourid="new place"></tour-view>
           <items-list></items-list>
           <section class="services-grid">
             <a href="/app/flight">

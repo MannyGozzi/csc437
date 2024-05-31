@@ -101,7 +101,7 @@ export class TourViewElement extends View<Model, Msg> {
   @property({ type: Boolean, reflect: true })
   edit = false;
 
-  @property({ attribute: "tour-id", reflect: true })
+  @property({ attribute: "tourid", reflect: true })
   tourid = "";
 
   @state()
@@ -118,7 +118,7 @@ export class TourViewElement extends View<Model, Msg> {
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     super.attributeChangedCallback(name, oldValue, newValue);
-    if (name === "tour-id" && oldValue !== newValue && newValue) {
+    if (name === "tourid" && oldValue !== newValue && newValue) {
       console.log("Tour Page:", newValue);
       this.dispatchMessage(["tour/select", { tourid: newValue }]);
     }
@@ -147,7 +147,7 @@ export class TourViewElement extends View<Model, Msg> {
           </tour-editor>
         `
       : html`
-          <tour-viewer username=${id}>
+          <tour-viewer tourid=${id}>
             <span slot="name">${name}</span>
             <span slot="userid">${id}</span>
             <span slot="nickname">${nickname}</span>
@@ -172,6 +172,7 @@ export class TourViewElement extends View<Model, Msg> {
           History.dispatch(this, "history/navigate", {
             href: `/app/tour/${this.tourid}`,
           }),
+        onFailure: (err) => console.error("Failed to save tour", err),
       },
     ]);
   }

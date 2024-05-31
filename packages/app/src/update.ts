@@ -24,7 +24,8 @@ export default function update(
           if (onSuccess) onSuccess();
         })
         .catch((error: Error) => {
-          console.error(error);
+          const {onFailure} = message[1];
+          if (onFailure) onFailure(error);
         });
       break;
     default:
@@ -63,8 +64,6 @@ function getTour(
   },
   user: Auth.User,
 ) {
-  console.log("GETTING TOUR, auth object:");
-  console.log(user);
   return fetch(`/api/tour/${msg.tourid}`, {
     method: "GET",
     headers: {
@@ -76,7 +75,7 @@ function getTour(
       return undefined;
     })
     .then((json: unknown) => {
-      if (json) return json as Profile;
+      if (json) return json as Tour;
       return undefined;
     })
     .catch((error: Error) => {
