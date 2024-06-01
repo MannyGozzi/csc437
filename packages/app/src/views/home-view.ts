@@ -29,10 +29,6 @@ export class HomeElement extends LitElement {
               <h3>View Profile</h3>
             </a>
           </section>
-          <section>
-            <h2>Quick Destinations</h2>
-            <article class="destination"></article>
-          </section>
           <section></section>
         </div>
       </div>`;

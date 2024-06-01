@@ -16,7 +16,7 @@ export class FlightPage extends View<Model, Msg> {
   }
 
   handleDateChange(event: { target: { value: Date } }) {
-    this.date = event.target.value;
+    this.date = new Date(event.target.value);
   }
 
   handleDepartureChange(event: { target: { value: string } }) {
@@ -60,7 +60,7 @@ export class FlightPage extends View<Model, Msg> {
                 type="text"
                 name="departure"
                 placeholder="Location"
-                @onchange=${this.handleDepartureChange}
+                @change=${this.handleDepartureChange}
               />
             </div>
             <div class="flex-col">
@@ -70,7 +70,7 @@ export class FlightPage extends View<Model, Msg> {
                 type="text"
                 name="destination"
                 placeholder="Location"
-                @onchange=${this.handleDestinationChange}
+                @change=${this.handleDestinationChange}
               />
             </div>
           </div>
