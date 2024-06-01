@@ -13,7 +13,7 @@ dotenv.config();
 const app = express();
 const HOST_URL = process.env.HOST_URL;
 const PORT = process.env.PORT;
-const staticDir = path.resolve(__dirname, process.env.STATIC as string);
+const staticDir = path.resolve(__dirname, '../../app' as string);
 console.log("Static Dir Path: ", staticDir);
 connect(process.env.MONGO_DB_NAME as string);
 
