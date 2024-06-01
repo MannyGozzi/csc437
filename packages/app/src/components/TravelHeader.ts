@@ -1,5 +1,5 @@
 import { Events } from "@calpoly/mustang";
-import { LitElement, css, html } from "lit";
+import { LitElement, html } from "lit";
 import "../dark-mode";
 
 function toggleDarkMode(ev: InputEvent) {

@@ -1,6 +1,6 @@
 import { View } from "@calpoly/mustang";
-import { LitElement, css, html } from "lit";
-import { property, state } from "lit/decorators.js";
+import { css, html } from "lit";
+import { state } from "lit/decorators.js";
 import { Model } from "../model";
 import { Msg } from "../messages";
 

@@ -1,5 +1,5 @@
 import { View } from "@calpoly/mustang";
-import { html, LitElement } from "lit";
+import { html } from "lit";
 import { Model } from "../model";
 import { Msg } from "../messages";
 

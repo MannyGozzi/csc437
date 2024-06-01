@@ -117,7 +117,7 @@ export class NewDestinationPage extends View<Model, Msg> {
     super.connectedCallback();
   }
 
-  onSubmit(e) {
+  onSubmit(e: Event) {
     e.preventDefault();
     this.dispatchMessage([
       "tour/save",
@@ -134,7 +134,5 @@ export class NewDestinationPage extends View<Model, Msg> {
         },
       },
     ]);
-    /* reset all fields in element render */
-    this.shadowRoot?.getElementById("destinationForm")?.reset();
   }
 }
