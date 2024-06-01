@@ -24,9 +24,18 @@ export default function update(
           if (onSuccess) onSuccess();
         })
         .catch((error: Error) => {
-          const {onFailure} = message[1];
+          const { onFailure } = message[1];
           if (onFailure) onFailure(error);
         });
+      break;
+    case "cart/add":
+      const item = message[1].item;
+      apply((model) => {
+        return {
+          ...model,
+          cart: [...(model.cart ?? []), item],
+        };
+      });
       break;
     default:
       const unhandled: any = message[0];

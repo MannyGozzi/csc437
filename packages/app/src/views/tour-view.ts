@@ -123,6 +123,7 @@ export class TourViewElement extends View<Model, Msg> {
       this.dispatchMessage(["tour/select", { tourid: newValue }]);
     }
   }
+
   render() {
     const {
       color,

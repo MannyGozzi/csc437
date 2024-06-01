@@ -11,7 +11,7 @@ export class ProfilePage extends LitElement {
             <h2>Profile View</h2>
           </div>
           <section>
-            <profile-view src="/profiles/123" />
+            <tour-view tourid="new place" />
           </section>
         </div>
       </div>`;
