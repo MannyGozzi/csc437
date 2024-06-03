@@ -34,6 +34,11 @@ app.use("/app", (_: Request, res: Response) => {
   fs.readFile(indexHtml, { encoding: "utf8" }).then((html) => res.send(html));
 });
 
+// redirect / to /app
+app.get("/", (_: Request, res: Response) => {
+  res.redirect("/app");
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${HOST_URL}:${PORT} 🔥`);
 });
