@@ -13,7 +13,7 @@ dotenv.config();
 const app = express();
 const HOST_URL = process.env.HOST_URL;
 const PORT = process.env.PORT;
-const staticDir = path.resolve(__dirname, '../../app' as string);
+const staticDir = path.resolve(__dirname, process.env.STATIC as string);
 console.log("Static Dir Path: ", staticDir);
 connect(process.env.MONGO_DB_NAME as string);
 
@@ -22,14 +22,14 @@ const nodeModules = path.resolve(__dirname, "../node_modules");
 console.log("Serving NPM packages from", nodeModules);
 app.use("/node_modules", express.static(nodeModules));
 
-/* Serve frontend code under proto package */
-const protoPublicDirectory = path.join(__dirname, "../../proto/public");
 app.use(express.json());
-app.use(express.static(protoPublicDirectory));
 app.use("/auth", AuthRoute);
 app.use("/api/tour", authenticateUser, ProfilesRoute);
 app.use("/api/destinations", DestinationsRoute);
 app.use("/app", (_: Request, res: Response) => {
+  app.use(express.static(staticDir));
+
+  console.log(path.resolve(staticDir, "index.html"));
   const indexHtml = path.resolve(staticDir, "index.html");
   fs.readFile(indexHtml, { encoding: "utf8" }).then((html) => res.send(html));
 });
