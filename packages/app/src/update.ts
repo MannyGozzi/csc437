@@ -28,6 +28,18 @@ export default function update(
           if (onFailure) onFailure(error);
         });
       break;
+      case "tour/edit":
+        editTour(message[1], user)
+          .then((tour) => apply((model) => ({ ...model, tour })))
+          .then(() => {
+            const { onSuccess } = message[1];
+            if (onSuccess) onSuccess();
+          })
+          .catch((error: Error) => {
+            const { onFailure } = message[1];
+            if (onFailure) onFailure(error);
+          });
+        break;
     case "cart/add":
       const item = message[1].item;
       apply((model) => {
@@ -36,6 +48,14 @@ export default function update(
           cart: [...(model.cart ?? []), item],
         };
       });
+      break;
+    case "tour/all":
+      getAllTours(user).then((tours) => {
+        if (tours) {
+          apply((model) => ({ ...model, tourIds: tours }));
+        }
+      }
+      );
       break;
     default:
       const unhandled: any = message[0];
@@ -51,6 +71,31 @@ function saveTour(
 ) {
   return fetch(`/api/tour`, {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      ...Auth.headers(user),
+    },
+    body: JSON.stringify(msg.tour),
+  })
+    .then((response: Response) => {
+      if (response.status === 200) return response.json();
+      return undefined;
+    })
+    .then((json: unknown) => {
+      if (json) return json as Tour;
+      return undefined;
+    });
+}
+
+function editTour(
+  msg: {
+    tourid: string;
+    tour: Tour;
+  },
+  user: Auth.User,
+) {
+  return fetch(`/api/tour/${msg.tourid}`, {
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
       ...Auth.headers(user),
@@ -86,6 +131,31 @@ function getTour(
     .then((json: unknown) => {
       if (json) return json as Tour;
       return undefined;
+    })
+    .catch((error: Error) => {
+      console.error(error);
+      return undefined;
+    });
+}
+
+async function getAllTours(
+  user: Auth.User,
+) {
+  return await fetch(`/api/tour`, {
+    method: "GET",
+    headers: {
+      ...Auth.headers(user),
+    },
+  })
+    .then((response: Response) => {
+      if (response.status === 200) return response.json();
+      console.log("JSONNNNNNNNNNNNNNNNNNNNNNNNNN")
+      return undefined;
+    })
+    .then((json: unknown) => {
+      const tours = json as Tour[];
+      console.log("TOURIDSSSSSSSSSSSSSSSS", tours)
+      return tours;
     })
     .catch((error: Error) => {
       console.error(error);

@@ -7,38 +7,54 @@ import { Model } from "../model";
 import { define, Form, History, InputArray, View } from "@calpoly/mustang";
 
 export class TourViewer extends LitElement {
-  @property()
+  @property({ type: String })
   tourid?: string;
 
+  @property({ type: Object })
+  tour?: Tour;
+
   render() {
-    return html`
+    return !this.tour ? html`
       <link rel="stylesheet" href="/styles/tokens.css" />
       <link rel="stylesheet" href="/styles/app.css" />
-      <h3>Tour View [Id: ${this.tourid}]</h3>
-      <section class="container border">
+      <section class="container">
         <dl>
-          <div class="flex-row">
-            <dt>Name</dt>
-            <dt></dt>
-            <dd><slot name="name"></slot></dd>
-            <dt>Nickname</dt>
-            <dd><slot name="nickname"></slot></dd>
-          </div>
-          <div class="flex-row">
-            <dt>Home</dt>
+          <div class="flex-col">
+            <h2><slot name="name"></slot></h2>
+            <slot name="avatar" id="avatar-slot" ></slot>
+            <strong>Nickname: <slot style="font-weight:normal;" name="nickname"></slot></strong>
+            <strong>Home: <slot style="font-weight:normal;" name="home"></slot></strong>
             <dd><slot name="home"></slot></dd>
             <dt>Airports</dt>
             <dd><slot name="airports"></slot></dd>
-          </div>
-          <div class="flex-row">
-            <dt>Avatar</dt>
-            <dd><slot name="avatar"></slot></dd>
-            <dt>Color</dt>
-            <dd><slot name="color"></slot></dd>
+            <strong>Color: <slot style="font-weight:normal;" name="color"></slot></strong>
+            <strong>Id: <span style="font-weight:normal;">${this.tourid} | <a href="/app/tour/${this.tourid}">Edit</a>
+             | <a href="/app/view/${this.tourid}">View</a>
+            </span></strong>
           </div>
         </dl>
       </section>
-    `;
+    ` : html`
+    <link rel="stylesheet" href="/styles/tokens.css" />
+      <link rel="stylesheet" href="/styles/app.css" />
+      <section class="container">
+        <dl>
+          <div class="flex-col">
+            <h2>${this.tour.name}</h2>
+            <img src=${this.tour.avatar} class="tour-img" style="width:100%;height:300px;object-fit:cover;border-radius:0.5rem;" alt="avatar" />
+            <strong>Nickname: <p style="font-weight:normal;"
+             name="nickname">${this.tour.nickname}</p></strong>
+            <strong>Home: <p style="font-weight:normal;" name="home">${this.tour.home}</p></strong>
+            <dd><slot name="home"></slot></dd>
+            <dt>Airports</dt>
+            ${this.tour.airports.map((s) => html` <li style="margin-left: 3rem;">${s}</li> `)}
+            <strong>Color: <p style="font-weight:normal;" name="color">${this.tour.color}</p></strong>
+            <strong>Id: <span style="font-weight:normal;">${this.tourid} | <a href="/app/tour/${this.tourid}">Edit</a>
+             | <a href="/app/view/${this.tourid}">View</a>
+            </span></strong>
+          </div>
+        </dl>
+      </section>`;
   }
 }
 
@@ -48,20 +64,20 @@ export class TourEditor extends LitElement {
     "input-array": InputArray.Element,
   });
 
-  @property()
-  get tour(): Tour | undefined {
-    return this.tour;
-  }
+  @property({ type: String })
+  tourid?: string;
 
   @property({ attribute: false })
   init?: Tour;
 
   render() {
-    return html` <link rel="stylesheet" href="/styles/tokens.css" />
+    return html`
+      <link rel="stylesheet" href="/styles/tokens.css" />
       <link rel="stylesheet" href="/styles/app.css" />
-      <h3>Tour View [Id: ${this.tour?.id}]</h3>
-      <section class="container border">
-        <button class="delete">Delete</button>
+      
+      <section class="center">
+      <section class="container">
+        <h2>Edit Destination</h2>
         <mu-form .init=${this.init}>
           <label>
             <span>Name</span>
@@ -88,7 +104,10 @@ export class TourEditor extends LitElement {
             <input name="color" />
           </label>
         </mu-form>
-      </section>`;
+        <button class="delete">Delete</button>
+        </div>
+      </section>
+      </section>`
   }
 }
 
@@ -114,10 +133,12 @@ export class TourViewElement extends View<Model, Msg> {
     // this.addEventListener("mu-form:submit", (event) =>
     //   this._handleSubmit(event as Form.SubmitEvent<Profile>)
     // );
+    
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     super.attributeChangedCallback(name, oldValue, newValue);
+    console.log('old value:', oldValue, 'new value:', newValue)
     if (name === "tourid" && oldValue !== newValue && newValue) {
       console.log("Tour Page:", newValue);
       this.dispatchMessage(["tour/select", { tourid: newValue }]);
@@ -153,7 +174,7 @@ export class TourViewElement extends View<Model, Msg> {
             <span slot="userid">${id}</span>
             <span slot="nickname">${nickname}</span>
             <span slot="home">${home}</span>
-            <span slot="avatar">${avatar}</span>
+            <img src=${avatar} class="tour-img" style="width:100%;height:300px;object-fit:cover;border-radius:0.5rem;" alt="avatar" slot="avatar" />
             <span slot="color">${color}</span>
             <ul slot="airports">
               ${airports_html}
@@ -165,15 +186,15 @@ export class TourViewElement extends View<Model, Msg> {
   _handleSubmit(event: Form.SubmitEvent<Tour>) {
     console.log("Handling submit of mu-form");
     this.dispatchMessage([
-      "tour/save",
+      "tour/edit",
       {
         tourid: this.tourid,
         tour: event.detail,
         onSuccess: () =>
           History.dispatch(this, "history/navigate", {
-            href: `/app/tour/${this.tourid}`,
+            href: `/app/view/${this.tourid}`,
           }),
-        onFailure: (err) => console.error("Failed to save tour", err),
+        onFailure: (err) => console.error("Failed to edit tour", err),
       },
     ]);
   }

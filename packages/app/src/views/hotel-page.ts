@@ -2,11 +2,15 @@ import { View } from "@calpoly/mustang";
 import { html } from "lit";
 import { Msg } from "../messages";
 import { Model } from "../model";
+import { state } from "lit/decorators.js";
 
 export class HotelPage extends View<Model, Msg> {
   start: Date;
   end: Date;
   location: string;
+
+  @state()
+  done = ""
 
   constructor() {
     super("blazing:model");
@@ -34,6 +38,7 @@ export class HotelPage extends View<Model, Msg> {
         item: `Hotel from ${this.start.toLocaleDateString()} to ${this.end.toLocaleDateString()} in ${this.location}`,
       },
     ]);
+    this.done = "Hotel Booked!";
   }
 
   render() {
@@ -74,6 +79,7 @@ export class HotelPage extends View<Model, Msg> {
             @change=${this.handleLocation}
           />
           <button @click=${this.onBook}>Book</button>
+          <p>${this.done}</p>
         </div>
       </section>`;
   }

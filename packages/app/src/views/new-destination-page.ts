@@ -72,7 +72,7 @@ export class NewDestinationPage extends View<Model, Msg> {
                     type="text"
                     name="home"
                     placeholder="Home"
-                    @cbanged=${(e: any) => (this.home = e.target.value)}
+                    @changed=${(e: any) => (this.home = e.target.value)}
                   />
                 </div>
                 <div class="flex-col">

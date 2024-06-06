@@ -18,7 +18,7 @@ export class ItemsList extends View<Model, Msg> {
     <link rel="stylesheet" href="/styles/tokens.css" />
      <div>
         <h3>Items List</h3>
-        <button @click=${() => (this.items = [...this.items, `Travel Item ${this.items.length}`])}>Add Item</button
+        <button style="margin-bottom: 20px;" @click=${() => (this.items = [...this.items, `Travel Item ${this.items.length}`])}>Add Item</button
         <ul>
           ${this.model.cart?.map((item) => html`<li>${item}</li>`)}
           ${this.items.map((item) => html`<li>${item}</li>`)}

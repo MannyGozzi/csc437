@@ -14,15 +14,16 @@ import { HotelPage } from "./views/hotel-page";
 import { CarPage } from "./views/car-page";
 import { CruisePage } from "./views/cruise-page";
 import { NewDestinationPage } from "./views/new-destination-page";
-import { ProfilePage } from "./views/profile-page";
+import { ViewPage } from "./views/view-page";
 import { ItemsList } from "./components/ItemsList";
 import { RegisterForm } from "./components/RegisterForm";
+import { AllToursElement } from "./views/all-tours";
 
 const routes = [
   {
     path: "/app/tour/:tourid",
     view: (params: Switch.Params) => html`
-      <tour-view tourid=${params.tourid}></tour-view>
+      <tour-view tourid=${params.tourid} .edit=${true}></tour-view>
     `,
   },
   {
@@ -62,8 +63,10 @@ const routes = [
     view: () => html` <new-destination-page></new-destination-page>`,
   },
   {
-    path: "/app/profile",
-    view: () => html` <profile-page></profile-page>`,
+    path: "/app/view/:tourid",
+    view: (params: Switch.Params) => html`
+    <view-page tourid=${params.tourid}></view-page>
+  `,
   },
 ];
 
@@ -91,7 +94,8 @@ define({
   "car-page": CarPage,
   "cruise-page": CruisePage,
   "new-destination-page": NewDestinationPage,
-  "profile-page": ProfilePage,
+  "view-page": ViewPage,
   "items-list": ItemsList,
   "register-form": RegisterForm,
+  "all-tours": AllToursElement
 });
