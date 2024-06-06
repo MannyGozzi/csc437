@@ -42,13 +42,12 @@ export class TourViewer extends LitElement {
           <div class="flex-col">
             <h2>${this.tour.name}</h2>
             <img src=${this.tour.avatar} class="tour-img" style="width:100%;height:300px;object-fit:cover;border-radius:0.5rem;" alt="avatar" />
-            <strong>Nickname: <p style="font-weight:normal;"
-             name="nickname">${this.tour.nickname}</p></strong>
-            <strong>Home: <p style="font-weight:normal;" name="home">${this.tour.home}</p></strong>
-            <dd><slot name="home"></slot></dd>
+            <strong>Nickname: <span style="font-weight:normal;"
+             name="nickname">${this.tour.nickname}</span></strong>
+            <strong>Home: <span style="font-weight:normal;" name="home">${this.tour.home}</span></strong>
             <dt>Airports</dt>
             ${this.tour.airports.map((s) => html` <li style="margin-left: 3rem;">${s}</li> `)}
-            <strong>Color: <p style="font-weight:normal;" name="color">${this.tour.color}</p></strong>
+            <strong>Color: <span style="font-weight:normal;" name="color">${this.tour.color}</span></strong>
             <strong>Id: <span style="font-weight:normal;">${this.tourid} | <a href="/app/tour/${this.tourid}">Edit</a>
              | <a href="/app/view/${this.tourid}">View</a>
             </span></strong>
